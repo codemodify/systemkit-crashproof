@@ -1,4 +1,4 @@
-# ![](https://fonts.gstatic.com/s/i/materialicons/bookmarks/v4/24px.svg) Terminal for Unix and Windows
+# ![](https://fonts.gstatic.com/s/i/materialicons/bookmarks/v4/24px.svg) Crash Proof Go Apps
 [![](https://img.shields.io/github/v/release/codemodify/systemkit-crashproof?style=flat-square)](https://github.com/codemodify/systemkit-crashproof/releases/latest)
 ![](https://img.shields.io/github/languages/code-size/codemodify/systemkit-crashproof?style=flat-square)
 ![](https://img.shields.io/github/last-commit/codemodify/systemkit-crashproof?style=flat-square)
