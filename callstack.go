@@ -22,7 +22,7 @@ func (thisRef StackFrame) String() string {
 // GetCallStack -
 func GetCallStack(e interface{}) (string, []StackFrame) {
 	const depth = 32
-	const skip = 5
+	const skip = 0
 	var pcs [depth]uintptr
 
 	callStackSize := runtime.Callers(skip, pcs[:])

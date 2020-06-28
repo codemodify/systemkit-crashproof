@@ -13,6 +13,13 @@ var ConcurrentCodeCrashCatcher ConcurrentCodeCrashCatcherDelegate
 
 // Go -
 func Go(concurrentCode func()) {
+	GoWithArgs(func(args ...interface{}) {
+		concurrentCode()
+	}, nil)
+}
+
+// GoWithArgs -
+func GoWithArgs(concurrentCode func(args ...interface{}), args ...interface{}) {
 	go func() {
 		defer func() {
 			debug.SetPanicOnFault(true)
@@ -25,7 +32,7 @@ func Go(concurrentCode func()) {
 		}()
 
 		if concurrentCode != nil {
-			concurrentCode()
+			concurrentCode(args)
 		}
 	}()
 }
