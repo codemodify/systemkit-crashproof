@@ -32,7 +32,7 @@ func GoWithArgs(concurrentCode func(args ...interface{}), args ...interface{}) {
 		}()
 
 		if concurrentCode != nil {
-			concurrentCode(args)
+			concurrentCode(args...)
 		}
 	}()
 }
