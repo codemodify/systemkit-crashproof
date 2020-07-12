@@ -3,10 +3,12 @@ package crashproof
 import (
 	"runtime/debug"
 	"sync"
+
+	callstack "github.com/codemodify/systemkit-callstack"
 )
 
 // ConcurrentCodeCrashCatcherDelegate -
-type ConcurrentCodeCrashCatcherDelegate func(err interface{}, packageName string, callStack []StackFrame)
+type ConcurrentCodeCrashCatcherDelegate func(err interface{}, packageName string, callStack []callstack.Frame)
 
 // ConcurrentCodeCrashCatcher -
 var ConcurrentCodeCrashCatcher ConcurrentCodeCrashCatcherDelegate
@@ -24,7 +26,7 @@ func GoWithArgs(concurrentCode func(args ...interface{}), args ...interface{}) {
 		defer func() {
 			debug.SetPanicOnFault(true)
 			if err := recover(); err != nil {
-				packageName, callStack := GetCallStack(err)
+				packageName, callStack := callstack.Get()
 				if ConcurrentCodeCrashCatcher != nil {
 					ConcurrentCodeCrashCatcher(err, packageName, callStack)
 				}
