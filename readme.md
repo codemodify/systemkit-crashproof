@@ -19,8 +19,8 @@
 
 ### What it offers
 - The one and only crash proofing mechanics for your Go app.
-- Catches carshes/panics deep into your concurrent code
-- Wats the catch: DON'T use `go func(){}()`, use `crashproof.Go(func(){})` as in setup below
+- Catches crashes/panics deep into your concurrent code
+- What's the catch: DON'T use `go func(){}()`, use `crashproof.Go(func(){})` as in setup below
 
 
 ### Sample
