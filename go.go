@@ -8,7 +8,7 @@ import (
 )
 
 // ConcurrentCodeCrashCatcherDelegate -
-type ConcurrentCodeCrashCatcherDelegate func(err interface{}, packageName string, callStack []callstack.Frame)
+type ConcurrentCodeCrashCatcherDelegate func(err interface{}, callStack []callstack.Frame)
 
 // ConcurrentCodeCrashCatcher -
 var ConcurrentCodeCrashCatcher ConcurrentCodeCrashCatcherDelegate
@@ -26,9 +26,9 @@ func GoWithArgs(concurrentCode func(args ...interface{}), args ...interface{}) {
 		defer func() {
 			debug.SetPanicOnFault(true)
 			if err := recover(); err != nil {
-				packageName, callStack := callstack.Get()
+				callStack := callstack.GetFrames()
 				if ConcurrentCodeCrashCatcher != nil {
-					ConcurrentCodeCrashCatcher(err, packageName, callStack)
+					ConcurrentCodeCrashCatcher(err, callStack)
 				}
 			}
 		}()
